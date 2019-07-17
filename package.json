@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bkaplan-github/events-section.git"
+    "url": "git+https://github.com/TMNT-NTF/events-section.git"
   },
   "author": "Brian Kaplan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bkaplan-github/events-section/issues"
+    "url": "https://github.com/TMNT-NTF/events-section/issues"
   },
-  "homepage": "https://github.com/bkaplan-github/events-section#readme",
+  "homepage": "https://github.com/TMNT-NTF/events-section#readme",
   "dependencies": {
     "@salesforce-ux/design-system": "^2.5.2",
     "blocksdk": "^1.0.0",
