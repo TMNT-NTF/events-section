@@ -371,32 +371,32 @@ function generateBigCard(event) {
     if (badge != "") {
       html += '\
                                 <tr>\
-                                  <td align="left" valign="top" style="padding-bottom: 10px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 12px; line-height: 16px; color: #5b955b; mso-line-height-rule: exactly; text-transform: uppercase;">'
+                                  <td align="left" valign="top" style="padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 10px; line-height: 12px; color: #5b955b; mso-line-height-rule: exactly; text-transform: uppercase;">'
                                     + badge +
                                   '</td>\
                                 </tr>';
     }
   }
-  if (event["name"] != "") {
-    html += '\
-                                <tr>\
-                                  <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">'
-                                    + event["name"] +
-                                  '</td>\
-                                </tr>';
-  }
   if (event["artist"] != "") {
     html += '\
                                 <tr>\
-                                  <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">'
+                                  <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 18px; line-height: 23px; color: #262626; mso-line-height-rule: exactly;">'
                                     + event["artist"] +
+                                  '</td>\
+                                </tr>';
+  }
+  if (event["name"] != "") {
+    html += '\
+                                <tr>\
+                                  <td align="left" valign="top" style="padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">'
+                                    + event["name"] +
                                   '</td>\
                                 </tr>';
   }
   if (event["venue"] != "") {
     html += '\
                                 <tr>\
-                                  <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">'
+                                  <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">'
                                     + event["venue"] +
                                   '</td>\
                                 </tr>';
@@ -404,7 +404,7 @@ function generateBigCard(event) {
   if (!options["suppress_descriptions"] && event["description"] != "") {
     html += '\
                                 <tr>\
-                                  <td align="left" valign="top" style="padding: 10px 0; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">'
+                                  <td align="left" valign="top" style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">'
                                     + event["description"] +
                                   '</td>\
                                 </tr>';
@@ -412,18 +412,18 @@ function generateBigCard(event) {
   if (!options["suppress_dates"] && event["date"] != "") {
     html += '\
                                 <tr>\
-                                  <td align="left" valign="top" style="padding: 10px 0; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">'
+                                  <td align="left" valign="top" style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 14px; line-height: 18px; color: #026CDF; mso-line-height-rule: exactly;">'
                                     + event["date"] +
                                   '</td>\
                                 </tr>';
   }
   html += '\
                                 <tr>\
-                                  <td style="padding: 10px 0 0;" align="left" valign="top">\
+                                  <td style="padding-top: 20px;" align="left" valign="top">\
                                     <table class="width-full" cellspacing="0" cellpadding="0" border="0">\
                                       <tr>\
-                                        <td style="-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;" bgcolor="#016ddc" align="center">\
-                                          <a href="' + event["url"] + '" alias="' + event["name"] + '" target="_blank" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-weight: 600; font-size: 14px; line-height: 18px; color: #ffffff; text-transform: none; text-decoration: none; padding: 5px 30px; border: 1px solid #016ddc; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; display: block;">\
+                                        <td style="-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;" bgcolor="#026CDF" align="center">\
+                                          <a href="' + event["url"] + '" alias="' + event["name"] + '" target="_blank" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-weight: 600; font-size: 14px; line-height: 18px; color: #ffffff; text-transform: none; text-decoration: none; padding: 5px 30px; border: 1px solid #026CDF; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; display: block;">\
                                             See Tickets\
                                           </a>\
                                         </td>\
@@ -472,32 +472,32 @@ function generateSmallCard(event) {
     if (badge != "") {
       html += '\
                                 <tr>\
-                                  <td align="left" valign="top" style="padding-bottom: 10px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 12px; line-height: 16px; color: #5b955b; mso-line-height-rule: exactly; text-transform: uppercase;">'
+                                  <td align="left" valign="top" style="padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 10px; line-height: 12px; color: #5b955b; mso-line-height-rule: exactly; text-transform: uppercase;">'
                                     + badge +
                                   '</td>\
                                 </tr>';
     }
   }
-  if (event["name"] != "") {
-    html += '\
-                                <tr>\
-                                  <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">'
-                                    + event["name"] +
-                                  '</td>\
-                                </tr>';
-  }
   if (event["artist"] != "") {
     html += '\
                                 <tr>\
-                                  <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">'
+                                  <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 18px; line-height: 23px; color: #262626; mso-line-height-rule: exactly;">'
                                     + event["artist"] +
+                                  '</td>\
+                                </tr>';
+  }
+  if (event["name"] != "") {
+    html += '\
+                                <tr>\
+                                  <td align="left" valign="top" style="padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">'
+                                    + event["name"] +
                                   '</td>\
                                 </tr>';
   }
   if (event["venue"] != "") {
     html += '\
                                 <tr>\
-                                  <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">'
+                                  <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">'
                                     + event["venue"] +
                                   '</td>\
                                 </tr>';
@@ -505,7 +505,7 @@ function generateSmallCard(event) {
   if (!options["suppress_descriptions"] && event["description"] != "") {
     html += '\
                                 <tr>\
-                                  <td align="left" valign="top" style="padding: 10px 0; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">'
+                                  <td align="left" valign="top" style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">'
                                     + event["description"] +
                                   '</td>\
                                 </tr>';
@@ -513,18 +513,18 @@ function generateSmallCard(event) {
   if (!options["suppress_dates"] && event["date"] != "") {
     html += '\
                                 <tr>\
-                                  <td align="left" valign="top" style="padding: 10px 0; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">'
+                                  <td align="left" valign="top" style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 14px; line-height: 18px; color: #026CDF; mso-line-height-rule: exactly;">'
                                     + event["date"] +
                                   '</td>\
                                 </tr>';
   }
   html += '\
                                 <tr>\
-                                  <td style="padding: 10px 0 0;" align="left" valign="top">\
+                                  <td style="padding-top: 20px;" align="left" valign="top">\
                                     <table class="width-full" cellspacing="0" cellpadding="0" border="0">\
                                       <tr>\
-                                        <td style="-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;" bgcolor="#016ddc" align="center">\
-                                          <a href="' + event["url"] + '" alias="' + event["name"] + '" target="_blank" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-weight: 600; font-size: 14px; line-height: 18px; color: #ffffff; text-transform: none; text-decoration: none; padding: 5px 30px; border: 1px solid #016ddc; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; display: block;">\
+                                        <td style="-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;" bgcolor="#026CDF" align="center">\
+                                          <a href="' + event["url"] + '" alias="' + event["name"] + '" target="_blank" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-weight: 600; font-size: 14px; line-height: 18px; color: #ffffff; text-transform: none; text-decoration: none; padding: 5px 30px; border: 1px solid #026CDF; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; display: block;">\
                                             See Tickets\
                                           </a>\
                                         </td>\
@@ -568,7 +568,7 @@ function generatePreview() {
             <table width="100%" cellpadding="0" cellspacing="0" border="0">\
               \
               <tr>\
-                <td align="left" valign="top" style="padding: 10px 0; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 20px; line-height: 24px; color: #313131; mso-line-height-rule: exactly;">'
+                <td align="left" valign="top" style="padding: 10px 0; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 20px; line-height: 24px; color: #262626; mso-line-height-rule: exactly;">'
                   +title+
                 '</td>\
               </tr>';
@@ -640,7 +640,7 @@ function generateCode() {
               \r\n\
               <table width="100%" cellpadding="0" cellspacing="0" border="0">\r\n\
                 <tr>\r\n\
-                  <td align="left" valign="top" style="padding: 10px 0; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 20px; line-height: 24px; color: #313131; mso-line-height-rule: exactly;">\r\n\
+                  <td align="left" valign="top" style="padding: 10px 0; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 20px; line-height: 24px; color: #262626; mso-line-height-rule: exactly;">\r\n\
                     %%=v(@Section_Title)=%%\r\n\
                   </td>\r\n\
                 </tr>\r\n\
@@ -682,52 +682,52 @@ function generateCode() {
                                       <table width="100%" cellpadding="0" cellspacing="0" border="0">\r\n\
     %%[       IF NOT (@Section_Supress_Big_Event_Badge OR Empty(@Event_Badge)) THEN ]%%\r\n\
                                         <tr>\r\n\
-                                          <td align="left" valign="top" style="padding-bottom: 10px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 12px; line-height: 16px; color: #5b955b; mso-line-height-rule: exactly; text-transform: uppercase;">\r\n\
+                                          <td align="left" valign="top" style="padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 10px; line-height: 12px; color: #5b955b; mso-line-height-rule: exactly; text-transform: uppercase;">\r\n\
                                             %%=v(@Event_Badge)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
     %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT Empty(@Event_Name) THEN ]%%\r\n\
+    %%[       IF NOT Empty(@Event_Artist) THEN ]%%\r\n\
                                          <tr>\r\n\
-                                          <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">\r\n\
-                                            %%=v(@Event_Name)=%%\r\n\
+                                          <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 18px; line-height: 23px; color: #262626; mso-line-height-rule: exactly;">\r\n\
+                                            %%=v(@Event_Artist)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
     %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT Empty(@Event_Artist) THEN ]%%\r\n\
+    %%[       IF NOT Empty(@Event_Name) THEN ]%%\r\n\
                                         <tr>\r\n\
-                                          <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">\r\n\
-                                            %%=v(@Event_Artist)=%%\r\n\
+                                          <td align="left" valign="top" style="padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">\r\n\
+                                            %%=v(@Event_Name)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
     %%[       ENDIF ]%%\r\n\
     %%[       IF NOT Empty(@Event_Venue) THEN ]%%\r\n\
                                         <tr>\r\n\
-                                          <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">\r\n\
+                                          <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Venue)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
     %%[       ENDIF ]%%\r\n\
     %%[       IF NOT (Empty(@Event_Description) OR @Section_Supress_Event_Descriptions) THEN ]%%\r\n\
                                         <tr>\r\n\
-                                          <td align="left" valign="top" style="padding: 10px 0; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">\r\n\
+                                          <td align="left" valign="top" style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Description)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
     %%[       ENDIF ]%%\r\n\
     %%[       IF NOT (Empty(@Event_Date) OR @Section_Supress_Event_Dates) THEN ]%%\r\n\
                                         <tr>\r\n\
-                                          <td align="left" valign="top" style="padding: 10px 0; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">\r\n\
+                                          <td align="left" valign="top" style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 14px; line-height: 18px; color: #026CDF; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Date)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
     %%[       ENDIF ]%%\r\n\
                                         <tr>\r\n\
-                                          <td style="padding: 10px 0 0;" align="left" valign="top">\r\n\
+                                          <td style="padding-top: 20px;" align="left" valign="top">\r\n\
                                             <table class="width-full" cellspacing="0" cellpadding="0" border="0">\r\n\
                                               <tr>\r\n\
-                                                <td style="-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;" bgcolor="#016ddc" align="center">\r\n\
-                                                  <a href="%%=RedirectTo(@Event_URL)=%%" alias="%%=v(@Event_Name)=%%" target="_blank" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-weight: 600; font-size: 14px; line-height: 18px; color: #ffffff; text-transform: none; text-decoration: none; padding: 5px 30px; border: 1px solid #016ddc; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; display: block;">\r\n\
+                                                <td style="-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;" bgcolor="#026CDF" align="center">\r\n\
+                                                  <a href="%%=RedirectTo(@Event_URL)=%%" alias="%%=v(@Event_Name)=%%" target="_blank" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-weight: 600; font-size: 14px; line-height: 18px; color: #ffffff; text-transform: none; text-decoration: none; padding: 5px 30px; border: 1px solid #026CDF; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; display: block;">\r\n\
                                                     <!--[if mso]>&nbsp;&nbsp;&nbsp;<![endif]-->See Tickets<!--[if mso]>&nbsp;&nbsp;&nbsp;<![endif]-->\r\n\
                                                   </a>\r\n\
                                                 </td>\r\n\
@@ -773,52 +773,52 @@ function generateCode() {
                                       <table width="100%" cellpadding="0" cellspacing="0" border="0">\r\n\
     %%[       IF NOT (@Section_Supress_Small_Event_Badges OR Empty(@Event_Badge)) THEN ]%%\r\n\
                                         <tr>\r\n\
-                                          <td align="left" valign="top" style="padding-bottom: 10px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 12px; line-height: 16px; color: #5b955b; mso-line-height-rule: exactly; text-transform: uppercase;">\r\n\
+                                          <td align="left" valign="top" style="padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 10px; line-height: 12px; color: #5b955b; mso-line-height-rule: exactly; text-transform: uppercase;">\r\n\
                                             %%=v(@Event_Badge)=%%\r\n\
-                                          </td>\r\n\
-                                        </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT Empty(@Event_Name) THEN ]%%\r\n\
-                                        <tr>\r\n\
-                                          <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">\r\n\
-                                            %%=v(@Event_Name)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
     %%[       ENDIF ]%%\r\n\
     %%[       IF NOT Empty(@Event_Artist) THEN ]%%\r\n\
                                         <tr>\r\n\
-                                          <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">\r\n\
+                                          <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 18px; line-height: 23px; color: #262626; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Artist)=%%\r\n\
+                                          </td>\r\n\
+                                        </tr>\r\n\
+    %%[       ENDIF ]%%\r\n\
+    %%[       IF NOT Empty(@Event_Name) THEN ]%%\r\n\
+                                        <tr>\r\n\
+                                          <td align="left" valign="top" style="padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">\r\n\
+                                            %%=v(@Event_Name)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
     %%[       ENDIF ]%%\r\n\
     %%[       IF NOT Empty(@Event_Venue) THEN ]%%\r\n\
                                         <tr>\r\n\
-                                          <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">\r\n\
+                                          <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Venue)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
     %%[       ENDIF ]%%\r\n\
     %%[       IF NOT (Empty(@Event_Description) OR @Section_Supress_Event_Descriptions) THEN ]%%\r\n\
                                         <tr>\r\n\
-                                          <td align="left" valign="top" style="padding: 10px 0; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">\r\n\
+                                          <td align="left" valign="top" style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Description)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
     %%[       ENDIF ]%%\r\n\
     %%[       IF NOT (Empty(@Event_Date) OR @Section_Supress_Event_Dates) THEN ]%%\r\n\
                                         <tr>\r\n\
-                                          <td align="left" valign="top" style="padding: 10px 0; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #313131; mso-line-height-rule: exactly;">\r\n\
+                                          <td align="left" valign="top" style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 14px; line-height: 18px; color: #026CDF; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Date)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
     %%[       ENDIF ]%%\r\n\
                                         <tr>\r\n\
-                                          <td style="padding: 10px 0 0;" align="left" valign="top">\r\n\
+                                          <td style="padding-top: 20px;" align="left" valign="top">\r\n\
                                             <table class="width-full" cellspacing="0" cellpadding="0" border="0">\r\n\
                                               <tr>\r\n\
-                                                <td style="-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;" bgcolor="#016ddc" align="center">\r\n\
-                                                  <a href="%%=RedirectTo(@Event_URL)=%%" alias="%%=v(@Event_Name)=%%" target="_blank" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-weight: 600; font-size: 14px; line-height: 18px; color: #ffffff; text-transform: none; text-decoration: none; padding: 5px 30px; border: 1px solid #016ddc; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; display: block;">\r\n\
+                                                <td style="-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;" bgcolor="#026CDF" align="center">\r\n\
+                                                  <a href="%%=RedirectTo(@Event_URL)=%%" alias="%%=v(@Event_Name)=%%" target="_blank" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-weight: 600; font-size: 14px; line-height: 18px; color: #ffffff; text-transform: none; text-decoration: none; padding: 5px 30px; border: 1px solid #026CDF; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; display: block;">\r\n\
                                                     <!--[if mso]>&nbsp;&nbsp;&nbsp;<![endif]-->See Tickets<!--[if mso]>&nbsp;&nbsp;&nbsp;<![endif]-->\r\n\
                                                   </a>\r\n\
                                                 </td>\r\n\
