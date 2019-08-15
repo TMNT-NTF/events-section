@@ -602,36 +602,37 @@ function generateCode() {
         SET @Section_Supress_Event_Descriptions = ' + (options["suppress_descriptions"] ? 1 : 0) + '\r\n\
     ]%%\r\n\
     %%[\r\n\
-        IF Empty(@Section_Title) THEN SET @Section_Title = Field(Row(@Section_Titles, @Section), "Value") ENDIF\r\n\
-        IF Empty(@Section_Supress_Event_Dates) THEN SET @Section_Supress_Event_Dates = @Global_Supress_Event_Dates ENDIF\r\n\
-        IF Empty(@Section_Supress_Event_Descriptions) THEN SET @Section_Supress_Event_Descriptions = @Global_Supress_Event_Descriptions ENDIF\r\n\
-        \r\n\
-        SET @Section_Event_Data = Concat("<root>", Field(Row(@Section_Events, @Section), "Xml"), "</root>")\r\n\
-        \r\n\
-        SET @Event_Names = BuildRowsetFromXML(@Section_Event_Data, "//event/name", 1)\r\n\
-        SET @Num_Events = RowCount(@Event_Names)\r\n\
-        \r\n\
-        IF @Num_Events > 0 THEN\r\n\
-          SET @Event_Badges = BuildRowsetFromXML(@Section_Event_Data, "//event/badge", 1)\r\n\
-          SET @Event_Artists = BuildRowsetFromXML(@Section_Event_Data, "//event/artist", 1)\r\n\
-          SET @Event_Descriptions = BuildRowsetFromXML(@Section_Event_Data, "//event/description", 1)\r\n\
-          SET @Event_Venues = BuildRowsetFromXML(@Section_Event_Data, "//event/venue", 1)\r\n\
-          SET @Event_Dates = BuildRowsetFromXML(@Section_Event_Data, "//event/date", 1)\r\n\
-          SET @Event_Images = BuildRowsetFromXML(@Section_Event_Data, "//event/image", 1)\r\n\
-          SET @Event_URLs = BuildRowsetFromXML(@Section_Event_Data, "//event/url", 1)\r\n\
+        IF @Section <= @Num_Sections THEN\r\n\
+          IF Empty(@Section_Title) THEN SET @Section_Title = Field(Row(@Section_Titles, @Section), "Value") ENDIF\r\n\
+          IF Empty(@Section_Supress_Event_Dates) THEN SET @Section_Supress_Event_Dates = @Global_Supress_Event_Dates ENDIF\r\n\
+          IF Empty(@Section_Supress_Event_Descriptions) THEN SET @Section_Supress_Event_Descriptions = @Global_Supress_Event_Descriptions ENDIF\r\n\
           \r\n\
-          IF @Num_Events < 1 THEN RaiseError(Concat("No events in section ", @Section, " data"), true) ENDIF\r\n\
-          IF @Num_Events != RowCount(@Event_Badges)\r\n\
-          OR @Num_Events != RowCount(@Event_Artists)\r\n\
-          OR @Num_Events != RowCount(@Event_Descriptions)\r\n\
-          OR @Num_Events != RowCount(@Event_Venues)\r\n\
-          OR @Num_Events != RowCount(@Event_Dates)\r\n\
-          OR @Num_Events != RowCount(@Event_Images)\r\n\
-          OR @Num_Events != RowCount(@Event_URLs)\r\n\
-          THEN \r\n\
-            RaiseError(Concat("Event data for section ", @Section, " not symmetric"), true) \r\n\
-          ENDIF\r\n\
+          SET @Section_Event_Data = Concat("<root>", Field(Row(@Section_Events, @Section), "Xml"), "</root>")\r\n\
           \r\n\
+          SET @Event_Names = BuildRowsetFromXML(@Section_Event_Data, "//event/name", 1)\r\n\
+          SET @Num_Events = RowCount(@Event_Names)\r\n\
+          \r\n\
+          IF @Num_Events > 0 THEN\r\n\
+            SET @Event_Badges = BuildRowsetFromXML(@Section_Event_Data, "//event/badge", 1)\r\n\
+            SET @Event_Artists = BuildRowsetFromXML(@Section_Event_Data, "//event/artist", 1)\r\n\
+            SET @Event_Descriptions = BuildRowsetFromXML(@Section_Event_Data, "//event/description", 1)\r\n\
+            SET @Event_Venues = BuildRowsetFromXML(@Section_Event_Data, "//event/venue", 1)\r\n\
+            SET @Event_Dates = BuildRowsetFromXML(@Section_Event_Data, "//event/date", 1)\r\n\
+            SET @Event_Images = BuildRowsetFromXML(@Section_Event_Data, "//event/image", 1)\r\n\
+            SET @Event_URLs = BuildRowsetFromXML(@Section_Event_Data, "//event/url", 1)\r\n\
+            \r\n\
+            IF @Num_Events < 1 THEN RaiseError(Concat("No events in section ", @Section, " data"), true) ENDIF\r\n\
+            IF @Num_Events != RowCount(@Event_Badges)\r\n\
+            OR @Num_Events != RowCount(@Event_Artists)\r\n\
+            OR @Num_Events != RowCount(@Event_Descriptions)\r\n\
+            OR @Num_Events != RowCount(@Event_Venues)\r\n\
+            OR @Num_Events != RowCount(@Event_Dates)\r\n\
+            OR @Num_Events != RowCount(@Event_Images)\r\n\
+            OR @Num_Events != RowCount(@Event_URLs)\r\n\
+            THEN \r\n\
+              RaiseError(Concat("Event data for section ", @Section, " not symmetric"), true) \r\n\
+            ENDIF\r\n\
+            \r\n\
     ]%%\r\n\
         \r\n\
         <table width="100%" cellpadding="0" cellspacing="0" border="0">\r\n\
@@ -646,18 +647,18 @@ function generateCode() {
                 </tr>\r\n\
                 \r\n\
     %%[\r\n\
-          FOR @e = 1 TO @Num_Events DO\r\n\
-            SET @Event_Badge = Field(Row(@Event_Badges, @e), "Value")\r\n\
-            SET @Event_Name = Field(Row(@Event_Names, @e), "Value")\r\n\
-            SET @Event_Artist = Field(Row(@Event_Artists, @e), "Value")\r\n\
-            SET @Event_Description = Field(Row(@Event_Descriptions, @e), "Value")\r\n\
-            SET @Event_Venue = Field(Row(@Event_Venues, @e), "Value")\r\n\
-            SET @Event_Date = Field(Row(@Event_Dates, @e), "Value")\r\n\
-            SET @Event_Image = Field(Row(@Event_Images, @e), "Value")\r\n\
-            SET @Event_URL = Field(Row(@Event_URLs, @e), "Value")\r\n\
-            \r\n\
-            IF @e == 1 AND @Section_First_Event_Big THEN\r\n\
-              IF NOT Empty(@Section_Big_Event_Badge) THEN SET @Event_Badge = @Section_Big_Event_Badge ENDIF\r\n\
+            FOR @e = 1 TO @Num_Events DO\r\n\
+              SET @Event_Badge = Field(Row(@Event_Badges, @e), "Value")\r\n\
+              SET @Event_Name = Field(Row(@Event_Names, @e), "Value")\r\n\
+              SET @Event_Artist = Field(Row(@Event_Artists, @e), "Value")\r\n\
+              SET @Event_Description = Field(Row(@Event_Descriptions, @e), "Value")\r\n\
+              SET @Event_Venue = Field(Row(@Event_Venues, @e), "Value")\r\n\
+              SET @Event_Date = Field(Row(@Event_Dates, @e), "Value")\r\n\
+              SET @Event_Image = Field(Row(@Event_Images, @e), "Value")\r\n\
+              SET @Event_URL = Field(Row(@Event_URLs, @e), "Value")\r\n\
+              \r\n\
+              IF @e == 1 AND @Section_First_Event_Big THEN\r\n\
+                IF NOT Empty(@Section_Big_Event_Badge) THEN SET @Event_Badge = @Section_Big_Event_Badge ENDIF\r\n\
     ]%%\r\n\
                 <tr>\r\n\
                   <td align="left" valign="top" style="padding: 10px 0;">\r\n\
@@ -680,48 +681,48 @@ function generateCode() {
                                   <tr>\r\n\
                                     <td align="left" valign="top" style="padding: 20px;">\r\n\
                                       <table width="100%" cellpadding="0" cellspacing="0" border="0">\r\n\
-    %%[       IF NOT (@Section_Supress_Big_Event_Badge OR Empty(@Event_Badge)) THEN ]%%\r\n\
+    %%[         IF NOT (@Section_Supress_Big_Event_Badge OR Empty(@Event_Badge)) THEN ]%%\r\n\
                                         <tr>\r\n\
                                           <td align="left" valign="top" style="padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 10px; line-height: 12px; color: #5b955b; mso-line-height-rule: exactly; text-transform: uppercase;">\r\n\
                                             %%=v(@Event_Badge)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT Empty(@Event_Artist) THEN ]%%\r\n\
+    %%[         ENDIF ]%%\r\n\
+    %%[         IF NOT Empty(@Event_Artist) THEN ]%%\r\n\
                                          <tr>\r\n\
                                           <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 18px; line-height: 23px; color: #262626; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Artist)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT Empty(@Event_Name) THEN ]%%\r\n\
+    %%[         ENDIF ]%%\r\n\
+    %%[         IF NOT Empty(@Event_Name) THEN ]%%\r\n\
                                         <tr>\r\n\
                                           <td align="left" valign="top" style="padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Name)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT Empty(@Event_Venue) THEN ]%%\r\n\
+    %%[         ENDIF ]%%\r\n\
+    %%[         IF NOT Empty(@Event_Venue) THEN ]%%\r\n\
                                         <tr>\r\n\
                                           <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Venue)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT (Empty(@Event_Description) OR @Section_Supress_Event_Descriptions) THEN ]%%\r\n\
+    %%[         ENDIF ]%%\r\n\
+    %%[         IF NOT (Empty(@Event_Description) OR @Section_Supress_Event_Descriptions) THEN ]%%\r\n\
                                         <tr>\r\n\
                                           <td align="left" valign="top" style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Description)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT (Empty(@Event_Date) OR @Section_Supress_Event_Dates) THEN ]%%\r\n\
+    %%[         ENDIF ]%%\r\n\
+    %%[         IF NOT (Empty(@Event_Date) OR @Section_Supress_Event_Dates) THEN ]%%\r\n\
                                         <tr>\r\n\
                                           <td align="left" valign="top" style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 14px; line-height: 18px; color: #026CDF; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Date)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
+    %%[         ENDIF ]%%\r\n\
                                         <tr>\r\n\
                                           <td style="padding-top: 20px;" align="left" valign="top">\r\n\
                                             <table class="width-full" cellspacing="0" cellpadding="0" border="0">\r\n\
@@ -749,7 +750,7 @@ function generateCode() {
                 </tr>\r\n\
                 \r\n\
     %%[\r\n\
-            ELSE\r\n\
+              ELSE\r\n\
     ]%%\r\n\
                 \r\n\
                 <tr>\r\n\
@@ -771,48 +772,48 @@ function generateCode() {
                                   <tr>\r\n\
                                     <td align="left" valign="top" style="padding: 20px;">\r\n\
                                       <table width="100%" cellpadding="0" cellspacing="0" border="0">\r\n\
-    %%[       IF NOT (@Section_Supress_Small_Event_Badges OR Empty(@Event_Badge)) THEN ]%%\r\n\
+    %%[         IF NOT (@Section_Supress_Small_Event_Badges OR Empty(@Event_Badge)) THEN ]%%\r\n\
                                         <tr>\r\n\
                                           <td align="left" valign="top" style="padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 10px; line-height: 12px; color: #5b955b; mso-line-height-rule: exactly; text-transform: uppercase;">\r\n\
                                             %%=v(@Event_Badge)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT Empty(@Event_Artist) THEN ]%%\r\n\
+    %%[         ENDIF ]%%\r\n\
+    %%[         IF NOT Empty(@Event_Artist) THEN ]%%\r\n\
                                         <tr>\r\n\
                                           <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 18px; line-height: 23px; color: #262626; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Artist)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT Empty(@Event_Name) THEN ]%%\r\n\
+    %%[         ENDIF ]%%\r\n\
+    %%[         IF NOT Empty(@Event_Name) THEN ]%%\r\n\
                                         <tr>\r\n\
                                           <td align="left" valign="top" style="padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Semibold; font-style: normal; font-weight: 600; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Name)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT Empty(@Event_Venue) THEN ]%%\r\n\
+    %%[         ENDIF ]%%\r\n\
+    %%[         IF NOT Empty(@Event_Venue) THEN ]%%\r\n\
                                         <tr>\r\n\
                                           <td align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Venue)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT (Empty(@Event_Description) OR @Section_Supress_Event_Descriptions) THEN ]%%\r\n\
+    %%[         ENDIF ]%%\r\n\
+    %%[         IF NOT (Empty(@Event_Description) OR @Section_Supress_Event_Descriptions) THEN ]%%\r\n\
                                         <tr>\r\n\
                                           <td align="left" valign="top" style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 16px; line-height: 20px; color: #676767; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Description)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
-    %%[       IF NOT (Empty(@Event_Date) OR @Section_Supress_Event_Dates) THEN ]%%\r\n\
+    %%[         ENDIF ]%%\r\n\
+    %%[         IF NOT (Empty(@Event_Date) OR @Section_Supress_Event_Dates) THEN ]%%\r\n\
                                         <tr>\r\n\
                                           <td align="left" valign="top" style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif, Font-Averta-Regular; font-style: normal; font-weight: 300; font-size: 14px; line-height: 18px; color: #026CDF; mso-line-height-rule: exactly;">\r\n\
                                             %%=v(@Event_Date)=%%\r\n\
                                           </td>\r\n\
                                         </tr>\r\n\
-    %%[       ENDIF ]%%\r\n\
+    %%[         ENDIF ]%%\r\n\
                                         <tr>\r\n\
                                           <td style="padding-top: 20px;" align="left" valign="top">\r\n\
                                             <table class="width-full" cellspacing="0" cellpadding="0" border="0">\r\n\
@@ -840,8 +841,8 @@ function generateCode() {
                 </tr>\r\n\
                 \r\n\
     %%[\r\n\
-            ENDIF\r\n\
-          NEXT @e\r\n\
+              ENDIF\r\n\
+            NEXT @e\r\n\
     ]%%\r\n\
               \r\n\
               </table>\r\n\
@@ -851,6 +852,7 @@ function generateCode() {
         </table>\r\n\
         \r\n\
     %%[\r\n\
+          ENDIF\r\n\
         ENDIF\r\n\
     ]%%';
 
